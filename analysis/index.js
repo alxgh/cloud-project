@@ -1,6 +1,5 @@
 const express = require('express');
-const register = require('./routes/register');
-const auth = require('./routes/badic_queries');
+const basic_queries = require('./routes/basic_queries');
 require('dotenv').config();
 
 const app = express();
@@ -14,8 +13,8 @@ app.use((request, response, next) => {
     next();
 });
 
-app.post('/register', register());
-app.head('/auth', auth());
+app.post('/top5platform', basic_queries.getTopFiveOfPlatform());
+
 app.listen(port, () => {
     console.log('start!');
 });
