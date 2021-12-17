@@ -19,7 +19,7 @@ const register = (db = _db) => async (request, response) => {
         response.send({id});
     } catch(err) {
         console.error(err);
-        response.statis(500).send({
+        response.status(500).send({
             error: 'internal error'
         });
     }
