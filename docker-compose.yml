@@ -1,0 +1,35 @@
+version: "3.9"
+services: 
+  auth:
+    image: "auth_service"
+    environment: 
+      - HTTP_PORT=3001
+      - PGUSER=postgres
+      - PGHOST=172.17.0.1
+      - PGPASSWORD=1230123A
+      - PGDATABASE=cloud
+      - PGPORT=5432
+    ports: 
+      - "3001:3001"
+  analysis:
+    image: "analysis_service"
+    environment: 
+      - HTTP_PORT=3002
+      - PGUSER=postgres
+      - PGHOST=172.17.0.1
+      - PGPASSWORD=1230123A
+      - PGDATABASE=cloud
+      - PGPORT=5432
+    ports: 
+      - "3002:3002"
+  main:
+    depends_on: 
+      - auth
+      - analysis
+    image: "main_service"
+    environment: 
+      - HTTP_PORT=3000
+      - AUTH_SERVICE_URL=http://auth:3001
+      - ANALYSIS_SERVICE_URL=http://analysis:3002
+    ports: 
+      - "3000:3000"
