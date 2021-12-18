@@ -14,6 +14,11 @@ app.use((request, response, next) => {
 });
 
 app.post('/top5platform', basic_queries.getTopFiveOfPlatform());
+app.post('/rowByRank', basic_queries.getRowByRank());
+app.post('/topNByYear', basic_queries.getTopNByYear());
+app.post('/topNByPlatform', basic_queries.getTopNByPlatform());
+app.post('/topNByGenre', basic_queries.getTopNByGenre());
+
 
 app.listen(port, () => {
     console.log('start!');
